@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
-import CartContext from "../../store/cart-context";
+import CartContext from "../../context/CartContext";
 import EmptyCartIcon from "./EmptyCartIcon";
 import Checkout from "./Checkout";
 import BASE_URL from "../../api/api";
@@ -52,6 +52,7 @@ const Cart = (props) => {
     let data = {
       user_info: {
         name: userData.name,
+        email:userData.email,
         street: userData.street,
         city: userData.city,
         postal_code: userData.postalCode,
@@ -60,7 +61,7 @@ const Cart = (props) => {
     };
 
     console.log("Data = ", data);
-    const response = await fetch(`${BASE_URL}/orders/`, {
+    const response = await fetch(`${BASE_URL}/api/orders/`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

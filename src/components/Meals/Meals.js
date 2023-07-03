@@ -1,7 +1,7 @@
-import MealsSummary from './MealsSummary';
-import AvailableMeals from './AvailableMeals';
+import MealsSummary from './AvailableMeals/MealsSummary';
+import AvailableMeals from './AvailableMeals/AvailableMeals';
 import Card from '../UI/Card';
-import delivery from '../../assests/delivery.png';
+// import delivery from '../../assests/delivery.png';
 
 const Meals = () => {
   return (
@@ -12,7 +12,9 @@ const Meals = () => {
         <span><img src={delivery} alt='delivery '/></span>
         <div className='col'> Fastest</div>
       </Card> */}
+
       <AvailableMeals />
+    
     </>
   );
 };

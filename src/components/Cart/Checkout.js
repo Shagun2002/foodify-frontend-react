@@ -6,14 +6,17 @@ const isEmpty = (value) => value.trim() === '';
 const isFiveChars = (value) => value.trim().length === 5;
 
 const Checkout = (props) => {
+  
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
+    email:true,
     street: true,
     city: true,
     postalCode: true,
   });
 
   const nameInputRef = useRef();
+  const emailInputRef=useRef();
   const streetInputRef = useRef();
   const postalCodeInputRef = useRef();
   const cityInputRef = useRef();
@@ -22,17 +25,20 @@ const Checkout = (props) => {
     event.preventDefault();
 
     const enteredName = nameInputRef.current.value;
+    const enteredEmail = emailInputRef.current.value;
     const enteredStreet = streetInputRef.current.value;
     const enteredPostalCode = postalCodeInputRef.current.value;
     const enteredCity = cityInputRef.current.value;
 
     const enteredNameIsValid = !isEmpty(enteredName);
+    const enteredEmailIsValid = !isEmpty(enteredEmail);
     const enteredStreetIsValid = !isEmpty(enteredStreet);
     const enteredCityIsValid = !isEmpty(enteredCity);
     const enteredPostalCodeIsValid = isFiveChars(enteredPostalCode);
 
     setFormInputsValidity({
       name: enteredNameIsValid,
+      email:enteredEmailIsValid,
       street: enteredStreetIsValid,
       city: enteredCityIsValid,
       postalCode: enteredPostalCodeIsValid,
@@ -40,6 +46,7 @@ const Checkout = (props) => {
 
     const formIsValid =
       enteredNameIsValid &&
+      enteredEmailIsValid &&
       enteredStreetIsValid &&
       enteredCityIsValid &&
       enteredPostalCodeIsValid;
@@ -51,6 +58,7 @@ const Checkout = (props) => {
     // Submit cart data
     props.onConfirm({
         name:enteredName,
+        email:enteredEmail,
         street:enteredStreet,
         postalCode:enteredPostalCode,
         city:enteredCity
@@ -59,6 +67,9 @@ const Checkout = (props) => {
 
   const nameControlClasses = `${classes.control} ${
     formInputsValidity.name ? '' : classes.invalid
+  }`;
+  const emailControlClasses = `${classes.control} ${
+    formInputsValidity.email ? '' : classes.invalid
   }`;
   const streetControlClasses = `${classes.control} ${
     formInputsValidity.street ? '' : classes.invalid
@@ -71,11 +82,19 @@ const Checkout = (props) => {
   }`;
 
   return (
+    <div className={classes.orderContainer}>
+       <div className={classes.orderformcontainer}>
     <form className={classes.form} onSubmit={confirmHandler}>
       <div className={nameControlClasses}>
         <label htmlFor='name'>Your Name</label>
         <input type='text' id='name' ref={nameInputRef} />
         {!formInputsValidity.name && <p>Please enter a valid name!</p>}
+      </div>
+
+      <div className={emailControlClasses}>
+        <label htmlFor='email'>Your Email</label>
+        <input type='text' id='email' ref={emailInputRef} />
+        {!formInputsValidity.email && <p>Please enter a valid email containing @!</p>}
       </div>
 
       <div className={streetControlClasses}>
@@ -105,6 +124,8 @@ const Checkout = (props) => {
         <button className={classes.submit}>Confirm</button>
       </div>
     </form>
+    </div>
+    </div>
   );
 };
 

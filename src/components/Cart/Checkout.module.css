@@ -1,7 +1,6 @@
 .form {
     margin: 1rem 0;
     height: 19rem;
-    overflow: scroll;
   }
   
   .control {
@@ -62,3 +61,15 @@
     border-color: #aa0b20;
     background-color: #ffeff1;
   }
+
+  .orderContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+  }
+  
+  .orderFormContainer {
+    margin-top: 20px;
+  }
+  
