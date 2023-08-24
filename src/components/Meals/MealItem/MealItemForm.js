@@ -1,27 +1,11 @@
-import { useRef, useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../../context/AuthContext";
-import Input from "../../UI/Input";
-import classes from "./MealItemForm.module.css";
-import { Helmet } from 'react-helmet';
+import { useRef, useState } from 'react';
 
-const pageTitle= 'Home'
+import Input from '../../UI/Input';
+import classes from './MealItemForm.module.css';
+
 const MealItemForm = (props) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
   const amountInputRef = useRef();
-
-  const { user, role } = useContext(AuthContext);
-  const isAdmin = user && role === "Admin";
-  const isLoggedIn = !!user;
-  const navigate= useNavigate();
-
-  const handleAddClick = () => {
-    if (!isLoggedIn) {
-      navigate('/login');
-    } else {
-      // Handle add button
-    }
-  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -42,29 +26,23 @@ const MealItemForm = (props) => {
   };
 
   return (
-    <>
-     <Helmet>
-        <title>{pageTitle}</title>
-      </Helmet>
     <form className={classes.form} onSubmit={submitHandler}>
       <Input
         ref={amountInputRef}
-        label="Amount"
+        label='Amount'
         input={{
-          id: "amount_" + props.id,
-          type: "number",
-          min: "1",
-          max: "5",
-          step: "1",
-          defaultValue: "1",
+          id: 'amount_' + props.id,
+          type: 'number',
+          min: '1',
+          max: '5',
+          step: '1',
+          defaultValue: '1',
         }}
       />
-
-        <button  onClick={handleAddClick} > + Add</button>
-      
+      <br/>
+      <button>+ Add to Cart</button>
       {!amountIsValid && <p>Please enter a valid amount (1-5).</p>}
     </form>
-    </>
   );
 };
 

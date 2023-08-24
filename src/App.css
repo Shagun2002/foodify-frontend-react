@@ -15,5 +15,6 @@ code {
 }
 
 .main {
-  min-height: 69vh;
+  min-height: 73vh;
+  /* background-color: #f3f6ff ; */
 }

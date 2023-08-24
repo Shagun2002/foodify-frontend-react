@@ -1,17 +1,16 @@
 import { useContext, useState } from "react";
-
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 import classes from "./Cart.module.css";
-import CartContext from "../../context/CartContext";
+import CartContext from "../context/CartContext";
 import EmptyCartIcon from "./EmptyCartIcon";
-import Checkout from "./Checkout";
-import BASE_URL from "../../api/api";
+import { useNavigate } from "react-router-dom";
 
 const Cart = (props) => {
-  const [isCheckout, setIsCheckout] = useState(false);
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [didSubmit, setDidSubmit] = useState(false);
+
   const cartCtx = useContext(CartContext);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -26,53 +25,8 @@ const Cart = (props) => {
     cartCtx.addItem({ ...item, amount: 1 });
   };
   const orderHandler = () => {
-    setIsCheckout(true);
-  };
-
-  // const submitOrderHandler= async (userData)=>{
-  //   setIsSubmitting(true);
-  //   console.log({
-  //     user:userData,
-  //     orderedItems: cartCtx.items
-  //   })
-  // await fetch('https://react-http-requests-api-default-rtdb.firebaseio.com/orders.json',{
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       user:userData,
-  //       orderedItems: cartCtx.items
-  //     })
-  //   })
-  //   setIsSubmitting(false);
-  //   setDidSubmit(true);
-  //   cartCtx.clearCart();
-  // }
-
-  const submitOrderHandler = async (userData) => {
-    setIsSubmitting(true);
-    let data = {
-      user_info: {
-        name: userData.name,
-        email:userData.email,
-        street: userData.street,
-        city: userData.city,
-        postal_code: userData.postalCode,
-      },
-      ordered_items: cartCtx.items,
-    };
-
-    console.log("Data = ", data);
-    const response = await fetch(`${BASE_URL}/api/orders/`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    console.log("response = ", response);
-    setIsSubmitting(false);
-    setDidSubmit(true);
-    cartCtx.clearCart();
+    cartCtx.hideCartHandler();
+    navigate("/checkout");
   };
 
   const cartItems = (
@@ -107,21 +61,17 @@ const Cart = (props) => {
     <>
       {emptyCart && (
         <span>
-          {" "}
-          <EmptyCartIcon />{" "}
+          <EmptyCartIcon />
         </span>
       )}
-      {cartItems}
 
+      {cartItems}
       <div className={classes.total}>
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
 
-      {isCheckout && (
-        <Checkout onConfirm={submitOrderHandler} onCancel={props.onHideCart} />
-      )}
-      {!isCheckout && modalActions}
+      {modalActions}
     </>
   );
 
@@ -138,11 +88,13 @@ const Cart = (props) => {
   );
 
   return (
-    <Modal onClose={props.onHideCart}>
-      {!isSubmitting && !didSubmit && cartModalContent}
-      {isSubmitting && isSubmittingModalContent}
-      {didSubmit && !isSubmitting && didSubmittingModalContent}
-    </Modal>
+    <>
+      <Modal onClose={props.onHideCart}>
+        {!isSubmitting && !didSubmit && cartModalContent}
+        {isSubmitting && isSubmittingModalContent}
+        {didSubmit && !isSubmitting && didSubmittingModalContent}
+      </Modal>
+    </>
   );
 };
 

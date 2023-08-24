@@ -1,13 +1,12 @@
 import React, { useContext } from 'react'
-import { Link,Navigate,useActionData} from 'react-router-dom';
+import { Link,Navigate} from 'react-router-dom';
 import classes from './LoginPage.module.css';
-import AuthContext from '../../context/AuthContext';
+import AuthContext from '../context/AuthContext';
 import { Helmet } from 'react-helmet';
 
 const pageTitle= 'Register'
 const RegisterPage = () => {
     let {user, registerUser}=useContext(AuthContext);
-    // const data= useActionData();
     const registerHandler=()=>{
         return <Navigate to ='/login' />
     }
@@ -16,21 +15,14 @@ const RegisterPage = () => {
     <Helmet>
         <title>{pageTitle}</title>
       </Helmet>
-   {/* <div className={classes.backgroundImageRegister}></div> */}
+   <div className={classes.backgroundImageRegister}></div>
+
+   
    <div className={classes.outside}>
      <div className={classes.loginContainer}>
   {!user && <form method="post" onSubmit={registerUser} className={classes.form}>
         <h1>Register Page</h1>
           
-        {/* {data && data.errors &&(
-           <ul>
-          {Object.values(data.errors).map(err=>(
-            <li key={err}> 
-            {err}  </li>
-          ))}
-        </ul> )}
-
-        {data &&  data.message && <p>{data.message}</p>} */}
 
         <p>
           <label htmlFor="email">Email</label>
@@ -46,6 +38,7 @@ const RegisterPage = () => {
         </p>
 
         <div className={classes.actions}>
+          
           <Link to='/login'> Already have an account? </Link>
           <button onClick={registerHandler}>Register </button>
         </div>

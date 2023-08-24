@@ -1,0 +1,37 @@
+
+.card__overlay {
+    position: absolute;
+      left: 5%; 
+    background-color:  rgba(0,0,0,.3);
+    width: 0;
+    height: 98%;
+      transition: .5s ease;  
+      display: flex;
+      align-items: center;     
+      font-size: 1.5rem ;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      text-align: center;
+    color:white;
+      
+    }
+    
+    .card:hover .card__overlay {
+    width: 90%;
+    }
+    
+    .card__overlay-content{
+      display: none;
+    
+    }
+    
+    .card:hover .card__overlay-content{
+      display: inline-block;    
+    }
+    
+    .card__overlay-line{
+      width: 90%;
+      height: 2px;
+      background: white;
+      margin-left: auto;
+      margin-right: auto;
+    }

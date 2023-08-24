@@ -22,3 +22,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Custom ignores
+src/components/Functionalities/Features.js
+src/components/Functionalities/Features.css
+
+src/components/Layout/HeaderBtns.jsx
+src/components/Layout/HeaderBtns.module.css
+src/components/Layout/Header.js
+src/components/Layout/Header.module.css

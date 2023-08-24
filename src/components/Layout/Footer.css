@@ -2,8 +2,8 @@
     position: sticky;
     padding: 70px 0px;
     /* background: #fde4e4; */
-    background-color: #F1F1F1;
-    color: #212529;
+    background-color: black;
+    color: white;
     /* font: 14PX Lato,sans-serif; */
     display: flex;
     text-align: start;
@@ -13,8 +13,9 @@
   }
   
   .footer__logo img {
-    width: calc(100% - 53%);
+    width: calc(100% - 83%);
     margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
   }
   
   .footer__logo h5 {
@@ -38,17 +39,17 @@
   
   .delivery__time-item span {
     font-weight: 600;
-    color: #212245;
+    color: white;
     margin: 0;
   }
   
   .delivery__time-item p {
-    color: #212245;
+    color:white;
   }
   
   .footer__title {
     font-size: 1.1rem;
-    color: #212245;
+    color: white;
     font-weight: 600;
   }
   

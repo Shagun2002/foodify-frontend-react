@@ -1,17 +1,18 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
-import logo from "../../assets/foodify-removebg.png"
+import logo from "../..//assets/logo1.png"
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
+    <>
     <footer className="footer">
       <div className="footer__logo">
-        <img src={logo} alt="logo" />
+      <Link to='/'>  <img src={logo} alt="logo" /> </Link>
         <h5>The foodify</h5>
         {/* <p>The foodify Delivers you the delicious food varities.All our meals are cooked with high-quality ingredients, just-in-time and
         of course by experienced chefs!</p> */}
-        
       </div>
       <div className="'single-footer">
        <h5>Contact Us</h5>
@@ -32,6 +33,7 @@ const Footer = () => {
         </ListGroup>
       </div>
     </footer>
+    </>
   );
 };
 

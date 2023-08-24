@@ -1,20 +1,13 @@
-import MealsSummary from './AvailableMeals/MealsSummary';
-import AvailableMeals from './AvailableMeals/AvailableMeals';
-import Card from '../UI/Card';
-// import delivery from '../../assests/delivery.png';
+import MealsSummary from './MealsSummary';
+import AvailableMeals from './AvailableMeals';
+import HomeMealsItems from './MealItem/HomeMealItems';
 
 const Meals = () => {
   return (
     <>
       <MealsSummary />
-      {/* <Card>
-        <h2>The Foodify brings you fastest delivery </h2>
-        <span><img src={delivery} alt='delivery '/></span>
-        <div className='col'> Fastest</div>
-      </Card> */}
-
       <AvailableMeals />
-    
+      {/* <HomeMealsItems/> */}
     </>
   );
 };

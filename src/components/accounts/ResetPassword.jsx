@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 
 import classes from "./LoginPage.module.css";
 import BASE_URL from "../../api/api";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 
 const ResetPassword = () => {
   document.title = "Foodify|Reset Password";
@@ -14,10 +14,7 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const authtoken = JSON.parse(localStorage.getItem("authTokens"));
-      // console.log("authToken=", authtoken);
-      // const accessToken = authtoken.access;
-      // console.log("accessToken=", accessToken);
+  
       const formData = {
         old_password: oldPassword,
         new_password: newPassword,

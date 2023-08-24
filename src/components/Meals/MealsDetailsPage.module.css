@@ -1,0 +1,58 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* .mealdetails {
+    display: flex;
+    gap: 60px;
+    margin-top: 10rem;
+  } */
+  
+  .mealdetails {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin-top: 10rem;
+    /* margin-left: -55rem; */
+    text-align: center; 
+  }
+  
+  .mealdetails-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .mealdetails-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .mealdetails img {
+    width: 400px;
+    height: 15rem;
+  }
+
+  .meal-left-image img{
+    width: 50rem;
+    height: 20rem;
+  }
+  
+  .mealdetails h1 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .mealdetails p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+
+  

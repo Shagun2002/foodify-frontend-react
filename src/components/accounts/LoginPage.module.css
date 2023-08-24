@@ -1,8 +1,3 @@
-/* .form {
-    max-width: 40rem;
-    margin: 2rem auto;
-  } */
-
 .form {
   margin: 50px auto;
   width: 350px;
@@ -10,7 +5,6 @@
   position: relative;
   box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.1);
   border-radius: 1px;
-  /* background-color: #2c3e50; */
   height: 450px;
   overflow: hidden;
 }
@@ -25,31 +19,28 @@
 }
 
 .form input {
-  font: bold;
+  font-weight: bold;
   padding: 0.25rem;
 }
 
 .form input:focus {
   border-bottom-color: rgb(33, 124, 215) !important;
 }
+
 .form label.active {
   color: #fff !important;
   font-size: 1.1rem;
 }
-input {
+
+.form input {
   color: #fff;
   padding-left: 15px !important;
 }
 
-.h6{
-  font:14px;
+.h6 {
+  font: 14px;
   color: white;
-}
-
-@media (max-width: 767px) {
-  .form {
-    width: 290px !important;
-  }
+  background-color: #408ee6;
 }
 
 .actions {
@@ -95,13 +86,13 @@ input {
   margin-top: 20px;
 }
 
-.backgroundImage {
+.backgroundImage,
+.backgroundImageRegister {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../assets/leftFood.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -109,27 +100,16 @@ input {
   z-index: -1;
 }
 
-.backgroundImageRegister {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("../../assets/rightFood.jpg");
+.backgroundImage {
+  background-image: url("../../assets/3.jpg");
+}
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.9; 
-  z-index: -1;
+.backgroundImageRegister {
+  background-image: url("../../assets/rightFood.jpg");
 }
 
 .outside {
   position: relative;
-  /* width: 800px;
-  height: 500px;
-  background: #fff;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1); */
   overflow: hidden;
 }
 
@@ -139,6 +119,6 @@ input {
 
 .forgot:hover {
   text-decoration: underline;
-  color:red;
+  color: red;
   cursor: pointer;
 }

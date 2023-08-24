@@ -1,20 +1,27 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import loginBG from '../../assets/feature/feature-2.jpg';
 
 import classes from "./LoginPage.module.css";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 import { Helmet } from 'react-helmet';
 
-const pageTitle= 'Login'
+const pageTitle = 'Login';
+
 const LoginPage = () => {
   let { user, loginUser } = useContext(AuthContext);
 
   return (
-    <>
-     <Helmet>
+    <div className={classes.loginPage}>
+      <Helmet>
         <title>{pageTitle}</title>
       </Helmet>
-      <div className={classes.backgroundImage}></div>
+
+      <div
+        className={classes.backgroundImage}
+        style={{ backgroundImage: `url(${loginBG})` }}
+      ></div>
+      
       <div className={classes.outside}>
         <div className={classes.loginContainer}>
           <div className={classes.loginFormContainer}>
@@ -52,7 +59,7 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

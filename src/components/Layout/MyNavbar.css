@@ -1,0 +1,76 @@
+nav {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    z-index: 100;
+    position: relative;
+    width: 100%;
+    background: black;
+  }
+  .logo{
+    height: 2rem;
+    width: 2rem;
+    margin-right: 0.5rem;
+  }
+  .link {
+    text-decoration: none;
+    display: flex;
+    color: white;
+    align-items: center;
+    font-weight: 600;
+    padding: 0 1rem;
+    height: 100%;
+    cursor: pointer;
+  }
+  .mobile-menu-icon {
+    text-decoration: none;
+  }
+  .icons {
+    display: flex;
+    align-items: center;
+    /* margin-left: 30px; */
+  }
+  .icon-tabler {
+    margin-right: 5px;
+  }
+  .menu-items {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .logo{
+    width: 12rem;
+    height: 3.3rem;
+  }
+  .user-icon {
+    color: white;
+    width: 2rem;
+    height: 1.4rem;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .menu-items,
+    .signup-button,
+    .github-corner {
+      display: none;
+    }
+    .mobile-menu-icon {
+      display: block;
+      color: white;
+      display: flex;
+      align-items: center;
+      font-size: 4vh;
+      cursor: pointer;
+      top: 0;
+      right: 0;
+    }
+  }
+  
+  .github-corner {
+    position: fixed;
+    top: 0;
+    z-index: 99999;
+    right: 0px;
+  }

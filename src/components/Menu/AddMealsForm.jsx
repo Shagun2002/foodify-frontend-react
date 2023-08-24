@@ -16,42 +16,42 @@ const AddMealsForm = (props) => {
   const navigate = useNavigate();
 
   const handleImageUpload = (event) => {
-    console.log("event = ", event);
     const file = event.target.files[0];
     setImage(file);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("Before AddMenu formData:", name, price, description, image);
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
     formData.append("image", image);
+
+
     fetch(`${BASE_URL}/api/meals/`, {
       method: "POST",
       body: formData,
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("meals added :", data);
-        // alert("meals added successfully!");
+        console.log("meal added successfully:", data);
+        setName('');
+        setPrice('');
+        setDescription('');
+        setImage(null); 
       })
 
       .catch((error) => {
         console.error("Error:", error);
-        // alert("Could not add meals! Something went wrong!");
       });
-    // navigate("/");
+    navigate("/");
   };
 
-  //   const handleClose = () => {
-  //     setVisible(false);
-  //     navigate("/");
-  //   };
 
   if (!visible) {
-    return null; // Render nothing when the component is not visible
+    return null;
   }
 
   return (
@@ -61,6 +61,8 @@ const AddMealsForm = (props) => {
       </Helmet>
       <div className={classes.control}>
         <h2>Add Your Meals</h2>
+        <hr />
+
         <form onSubmit={handleSubmit} className={classes.form}>
           <label>
             Name:
@@ -98,9 +100,6 @@ const AddMealsForm = (props) => {
           <button className={classes.button} type="submit">
             Submit
           </button>
-          {/* <button className={classes.button} onClick={handleClose}>
-          Close
-        </button> */}
         </form>
       </div>
     </>

@@ -1,100 +1,109 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useContext } from "react";
 import AddMenu from "./components/Menu/AddMenu";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Home";
-import ErrorPage from "./pages/ErrorPage";
+import ErrorPage from "./components/pages/ErrorPage";
 import PrivateAdminRoute from "./utils/PrivateAdminRoute";
 import PrivateUserRoute from "./utils/PrivateUserRoute";
-import Header from "./components/Layout/Header";
 import LoginPage from "./components/accounts/LoginPage";
 import RegisterPage from "./components/accounts/RegisterPage";
-import Checkout from "./components/Cart/Checkout";
-import Order from "./components/Cart/Order";
-import ContactUsForm from "./pages/ContactUs";
-import BookTable from "./pages/BookTable";
-import Feedbacks from "./pages/Feedbacks";
+import ContactUsForm from "./components/pages/ContactUs";
+import Feedbacks from "./components/pages/Feedbacks";
 import Footer from "./components/Layout/Footer";
 import "./App.css";
-import Navbar from "./components/Layout/Navbar";
 import ResetPassword from "./components/accounts/ResetPassword";
-import { Helmet } from 'react-helmet';
-import BookTableForm from "./pages/BookTable";
-import MealsDetailsPage from "./components/Meals/MealDetailsFolder/MealsDetailsPage";
+import { Helmet } from "react-helmet";
+import BookTableForm from "./components/pages/BookTable";
+import MyCheckout from "./components/Cart/MyCheckout";
+import Cart from "./components/Cart/Cart";
+import CartContext from "./components/context/CartContext";
+import MyNavbar from "./components/Layout/MyNavbar";
+import MatchingMeals from "./components/Functionalities/MatchingMeals";
+import MealsScreen from "./components/Meals/MealsScreen";
+import AddTestimonialForm from "./components/Functionalities/AddTestimonialForm";
+import EditTestimonialForm from "./components/Functionalities/EditTestimonialForm";
+
+const PUBLIC_ROUTES = [
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+  },
+  {
+    path: "/meals-details/:id",
+    element: <MealsScreen />,
+  },
+  {
+    path: "/*",
+    element: <ErrorPage />,
+  },
+];
+
+const USER_ROUTES = [
+  {
+    path: "/reset-password",
+    element: <ResetPassword />,
+  },
+  {
+    path: "/checkout",
+    element: <MyCheckout />,
+  },
+
+  {
+    path: "/contact-us",
+    element: <ContactUsForm />,
+  },
+  {
+    path: "/book-table",
+    element: <BookTableForm />,
+  },
+
+  {
+    path: "meals",
+    element: <MatchingMeals />,
+  },
+];
+
+const ADMIN_ROUTES = [
+  {
+    path: "/add-menu",
+    element: <AddMenu />,
+  },
+  {
+    path: "/feedbacks",
+    element: <Feedbacks />,
+  },
+  {
+    path: "/add-testimonial",
+    element: <AddTestimonialForm />,
+  },
+  {
+    path: "/edit-testimonial/:id",
+    element: <EditTestimonialForm />,
+  },
+];
+const PAGE_TITLE = "Foodify";
 
 function App() {
-//   useEffect(() => {
-//     document.title = "Foodify"
-//  }, []); 
+  const { hideCartHandler, showCartHandler, cartIsShown } =
+    useContext(CartContext);
 
-const pageTitle = 'Foodify';
-
-
-  const [cartIsShown, setCartIsShown] = useState(false);
-  const showCartHandler = () => {
-    setCartIsShown(true);
-  };
-
-  const PUBLIC_ROUTES = [
-    {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/login",
-      element: <LoginPage />,
-    },
-    {
-      path: "/register",
-      element: <RegisterPage />,
-    },
-    
-    {
-      path: "/*",
-      element: <ErrorPage />,
-    },
-  ];
-
-  const USER_ROUTES = [
-    {
-      path: "/reset-password",
-      element: <ResetPassword />,
-    },
-    {
-      path: "/order",
-      element: <Order />,
-    },
-    {
-      path: "/contact-us",
-      element: <ContactUsForm />,
-    },
-    {
-      path: "/book-table",
-      element: <BookTableForm />,
-    },
-    {
-      path:'/meals-details/:id',
-      element:<MealsDetailsPage/>,
-    }
-  ];
-
-  const ADMIN_ROUTES = [
-    {
-      path: "/add-menu",
-      element: <AddMenu />,
-    },
-    {
-      path: "/feedbacks",
-      element: <Feedbacks />,
-    },
-  ];
   return (
     <>
-     <Helmet>
-        <title>{pageTitle}</title>
+      <Helmet>
+        <title>{PAGE_TITLE}</title>
       </Helmet>
-      {/* <Navbar onShowCart={showCartHandler}/> */}
-      <Header />
+
+      {cartIsShown && <Cart onHideCart={hideCartHandler} />}
+      <MyNavbar onShowCart={showCartHandler} />
+
       <main className="main">
         <Routes>
           {PUBLIC_ROUTES.map(({ path, element }) => (
